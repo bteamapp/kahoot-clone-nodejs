@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
     socket.on('host-join', (data) =>{
         
         //Check to see if id passed in url corresponds to id of kahoot game in database
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
             if (err) throw err;
             var dbo = db.db("kahootDB");
             var query = { id:  parseInt(data.id)};
